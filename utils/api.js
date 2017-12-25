@@ -1,14 +1,17 @@
 import { AsyncStorage } from 'react-native'
 
-export async function getDecks () {
+export function getDecks () {
+  return AsyncStorage.getItem('__UDACICARDS__').then((value) => {
+    return JSON.parse(value) || {}
+  })
 }
 
-export async function getDeck (id) {
+export function getDeck (id) {
 }
 
-export async function saveDeckTitle (title) {
-  await AsyncStorage.setItem(title, JSON.stringify([]))
+export function saveDeckTitle (title) {
+  return AsyncStorage.mergeItem('__UDACICARDS__', JSON.stringify({[title]: []}))
 }
 
-export async function addCardToDeck (title, card) {
+export function addCardToDeck (title, card) {
 }

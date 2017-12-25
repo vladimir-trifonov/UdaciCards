@@ -17,8 +17,10 @@ class NewDeck extends React.Component {
   submit () {
     const { title } = this.state
     this.props.saveDeckTitle(title)
-    this.setState({ title: '' })
-    this.props.navigation.navigate('DeckList')
+      .then(() => {
+        this.setState({ title: '' })
+        this.props.navigation.navigate('DeckList')
+      })
   }
 
   render () {
@@ -39,7 +41,11 @@ const styles = StyleSheet.create({
     paddingTop: 10
   },
   container: {
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderWidth: 1,
+    margin: 1,
+    borderColor: 'grey',
+    padding: 5
   },
   input: {
     height: 50
