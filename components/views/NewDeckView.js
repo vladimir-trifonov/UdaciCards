@@ -27,8 +27,8 @@ class NewDeck extends React.Component {
     return (
       <View style={styles.container}>
         <TextInput style={styles.input} value={this.state.title} onChangeText={title => this.setState({ title })} />
-        <TouchableOpacity style={styles.submitBtn} onPress={this.submit}>
-          <Text style={styles.submitBtnText}>Create Deck</Text>
+        <TouchableOpacity style={styles.submitButton} onPress={this.submit}>
+          <Text style={styles.submitButtonText}>Create Deck</Text>
         </TouchableOpacity>
       </View>
     )
@@ -44,19 +44,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 1,
     margin: 1,
-    borderColor: 'grey',
-    padding: 5
+    borderColor: 'grey'
   },
   input: {
     height: 50
   },
-  submitBtn: {
+  submitButton: {
     backgroundColor: 'white',
     alignItems: 'center',
     paddingTop: 10,
     paddingBottom: 10
   },
-  submitBtnText: {
+  submitButtonText: {
     color: 'black'
   }
 })

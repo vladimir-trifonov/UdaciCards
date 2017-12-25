@@ -4,10 +4,16 @@ import { DeckListView, DeckView, NewDeckView, NewQuestionView, QuizView } from '
 
 const HomeView = TabNavigator({
   DeckList: {
-    screen: DeckListView
+    screen: DeckListView,
+    navigationOptions: {
+      tabBarLabel: 'Decks'
+    }
   },
   NewDeck: {
-    screen: NewDeckView
+    screen: NewDeckView,
+    navigationOptions: {
+      tabBarLabel: 'Create Deck'
+    }
   }
 })
 
