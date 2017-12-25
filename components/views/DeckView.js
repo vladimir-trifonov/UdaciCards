@@ -4,18 +4,19 @@ import { connect } from 'react-redux'
 
 class DeckView extends React.Component {
   render () {
-    const { deck = {} } = this.props
+    const { questions = [], title = '' } = this.props
     const { navigate } = this.props.navigation
+    const hasQuestions = !!(questions && questions.length)
 
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>{deck.title}</Text>
-        <Text style={styles.questions}>{deck.questions ? deck.questions.length : 0} cards</Text>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.questions}>{hasQuestions ? questions.length : 0} cards</Text>
         <View>
-          <TouchableOpacity style={styles.cardButton} onPress={() => navigate('NewQuestion', { id: deck.title })}>
+          <TouchableOpacity style={styles.cardButton} onPress={() => navigate('NewQuestion', { id: title })}>
             <Text style={styles.cardButtonText}>Add Card</Text>
           </TouchableOpacity>
-          {deck.questions && <TouchableOpacity style={styles.quizButton} onPress={() => navigate('Quiz', { id: deck.title })}>
+          {hasQuestions && <TouchableOpacity style={styles.quizButton} onPress={() => navigate('Quiz', { id: title })}>
             <Text style={styles.quizButtonText}>Start Quiz</Text>
           </TouchableOpacity>}
         </View>
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 120,
     marginLeft: 120,
-    marginTop: 150,
+    marginTop: 100,
     padding: 10,
     borderRadius: 10,
     borderColor: 'black',
@@ -69,8 +70,10 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state, props) => {
+  const title = props.navigation.state.params.id
   return {
-    deck: state.default[props.navigation.state.params.id]
+    title,
+    questions: state.default[title]
   }
 }
 

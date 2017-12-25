@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     textAlign: 'center'
-
   },
   questions: {
     fontSize: 15,
