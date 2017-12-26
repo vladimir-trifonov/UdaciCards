@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { NavigationActions } from 'react-navigation'
 import { clearNotification, setNotification } from '../../utils/notifications'
 
 class QuizView extends React.Component {
@@ -15,7 +14,8 @@ class QuizView extends React.Component {
       showSummary: false
     }
 
-    this.reset = this.reset.bind(this)
+    this.goBack = this.goBack.bind(this)
+    this.restart = this.restart.bind(this)
     this.toggleCard = this.toggleCard.bind(this)
   }
 
@@ -46,29 +46,30 @@ class QuizView extends React.Component {
     this.setState(state)
   }
 
-  reset () {
+  goBack () {
     this.props
       .navigation
-      .dispatch(NavigationActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'Home' })]
-      }))
+      .goBack()
+  }
 
+  restart () {
     this.setState({ showAnswer: false, index: 0, result: 0, showSummary: false })
   }
 
   renderSummary () {
     const { questions } = this.props
     const { result } = this.state
-    const score = ((result / questions.length) * 100).toFixed(0)
 
     return (
       <View style={styles.container}>
         <Text style={styles.summaryTitle}>Results</Text>
-        <Text style={styles.summaryResult}>Your result: {score}%</Text>
+        <Text style={styles.summaryResult}>Your result: {result}/{questions.length}</Text>
         <View>
-          <TouchableOpacity style={styles.quizListButton} onPress={this.reset}>
-            <Text style={styles.buttonText}>Quiz List</Text>
+          <TouchableOpacity style={styles.restartButton} onPress={this.restart}>
+            <Text style={styles.restartButtonText}>Restart Quiz</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.goBackButton} onPress={this.goBack}>
+            <Text style={styles.goBackButtonText}>Back to Deck</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -151,17 +152,30 @@ const styles = StyleSheet.create({
     fontSize: 40,
     marginBottom: 100
   },
-  quizListButton: {
-    alignItems: 'center',
+  goBackButton: {
     backgroundColor: 'black',
+    alignItems: 'center',
     marginRight: 80,
     marginLeft: 80,
     marginTop: 10,
     padding: 10,
     borderRadius: 10
   },
-  buttonText: {
+  goBackButtonText: {
     color: 'white',
+    fontSize: 20
+  },
+  restartButton: {
+    alignItems: 'center',
+    marginRight: 80,
+    marginLeft: 80,
+    marginTop: 0,
+    padding: 10,
+    borderRadius: 10,
+    borderColor: 'black',
+    borderWidth: 1
+  },
+  restartButtonText: {
     fontSize: 20
   },
   quizCorrectButton: {
@@ -169,7 +183,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
     marginRight: 100,
     marginLeft: 100,
-    marginTop: 100,
+    marginTop: 60,
     padding: 10,
     borderRadius: 10
   },

@@ -19,7 +19,7 @@ class NewDeckView extends React.Component {
     this.props.saveDeckTitle(title)
       .then(() => {
         this.setState({ title: '' })
-        this.props.navigation.navigate('DeckList')
+        this.props.navigation.navigate('Deck', {id: title})
       })
   }
 
