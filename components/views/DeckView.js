@@ -20,7 +20,6 @@ class DeckView extends React.Component {
             <Text style={styles.quizButtonText}>Start Quiz</Text>
           </TouchableOpacity>}
         </View>
-
       </View>
     )
   }

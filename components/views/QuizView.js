@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
-import { clearNotification, setNotifications } from '../../utils/notifications'
+import { clearNotification, setNotification } from '../../utils/notifications'
 
 class QuizView extends React.Component {
   constructor () {
@@ -40,7 +40,7 @@ class QuizView extends React.Component {
       state.index = index + 1
     } else {
       state.showSummary = !showSummary
-      clearNotification().then(setNotifications)
+      clearNotification().then(setNotification)
     }
 
     this.setState(state)
