@@ -26,12 +26,10 @@ class QuizView extends React.Component {
   handleAnswer (value) {
     const { questions } = this.props
     const { index, result, showSummary } = this.state
-    const question = questions[index]
-    const answer = (question.answer || 'n')[0].toLowerCase()
 
     let state = {
       showAnswer: false,
-      result: ((value === 'y' && answer === 'y') || (value === 'n' && answer !== 'y'))
+      result: value === 'y'
         ? result + 1
         : result
     }
