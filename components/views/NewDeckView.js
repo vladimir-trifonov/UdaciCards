@@ -24,11 +24,12 @@ class NewDeckView extends React.Component {
   }
 
   render () {
+    const disabled = !this.state.title
     return (
       <View style={styles.container}>
         <Text style={styles.title} >What is the title of your new deck?</Text>
         <TextInput placeholder='Deck Title' style={styles.input} value={this.state.title} onChangeText={title => this.setState({ title })} />
-        <TouchableOpacity style={styles.submitButton} onPress={this.submit}>
+        <TouchableOpacity style={styles.submitButton} onPress={this.submit} activeOpacity={disabled ? 0.3 : 1} disabled={disabled}>
           <Text style={styles.submitButtonText}>Create Deck</Text>
         </TouchableOpacity>
       </View>
@@ -46,15 +47,15 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    flex: 1,
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    flex: 1
   },
   input: {
     alignSelf: 'stretch',
     height: 50,
     borderWidth: 1,
-    margin: 1,
-    borderColor: 'grey'
+    borderColor: 'grey',
+    margin: 1
   },
   submitButton: {
     alignItems: 'center',
@@ -62,8 +63,8 @@ const styles = StyleSheet.create({
     marginLeft: 100,
     marginTop: 10,
     padding: 10,
-    borderRadius: 10,
     borderColor: 'black',
+    borderRadius: 10,
     borderWidth: 1
   },
   submitButtonText: {

@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     height: Constants.statusBarHeight
   },
   statusBar: {
+    backgroundColor: 'black',
     height: Constants.statusBarHeight
   }
 })

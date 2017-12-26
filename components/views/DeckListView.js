@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     padding: 10,
     borderWidth: 1,
-    margin: 1,
-    borderColor: 'grey'
+    borderColor: 'grey',
+    margin: 1
   },
   title: {
     fontSize: 30,

@@ -25,11 +25,12 @@ class NewQuestionView extends React.Component {
   }
 
   render () {
+    const disabled = (!this.state.question || !this.state.answer)
     return (
       <View style={styles.container}>
         <TextInput placeholder='Question' style={styles.input} value={this.state.question} onChangeText={question => this.setState({ question })} />
         <TextInput placeholder='Answer' style={styles.input} value={this.state.answer} onChangeText={answer => this.setState({ answer })} />
-        <TouchableOpacity style={styles.submitButton} onPress={this.submit}>
+        <TouchableOpacity style={styles.submitButton} onPress={this.submit} activeOpacity={disabled ? 0.3 : 1} disabled={disabled}>
           <Text style={styles.submitButtonText}>Add Question</Text>
         </TouchableOpacity>
       </View>
@@ -41,24 +42,24 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    flex: 1,
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    flex: 1
   },
   input: {
     alignSelf: 'stretch',
+    borderColor: 'grey',
     height: 50,
     borderWidth: 1,
-    margin: 1,
-    borderColor: 'grey'
+    margin: 1
   },
   submitButton: {
     alignItems: 'center',
+    borderColor: 'black',
     marginRight: 100,
     marginLeft: 100,
     marginTop: 10,
     padding: 10,
     borderRadius: 10,
-    borderColor: 'black',
     borderWidth: 1
   },
   submitButtonText: {

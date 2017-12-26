@@ -2,6 +2,13 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 
 import { DeckListView, DeckView, NewDeckView, NewQuestionView, QuizView } from './views'
 
+const navigationOptions = {
+  headerTintColor: 'white',
+  headerStyle: {
+    backgroundColor: 'black'
+  }
+}
+
 const HomeView = TabNavigator({
   DeckList: {
     screen: DeckListView,
@@ -15,20 +22,34 @@ const HomeView = TabNavigator({
       tabBarLabel: 'Create Deck'
     }
   }
+}, {
+  animationEnabled: true,
+  tabBarOptions: {
+    allowFontScaling: true,
+    style: {
+      backgroundColor: 'black'
+    }
+  }
 })
 
 const Navigator = StackNavigator({
   Home: {
-    screen: HomeView
+    screen: HomeView,
+    navigationOptions: {
+      header: null
+    }
   },
   Quiz: {
-    screen: QuizView
+    screen: QuizView,
+    navigationOptions
   },
   Deck: {
-    screen: DeckView
+    screen: DeckView,
+    navigationOptions
   },
   NewQuestion: {
-    screen: NewQuestionView
+    screen: NewQuestionView,
+    navigationOptions
   }
 })
 
